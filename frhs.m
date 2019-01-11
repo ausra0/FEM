@@ -11,7 +11,6 @@ function FF = frhs(Coorneu)
 
 % d�finir la fonction pour le second membre 
 f = @(x, y)((1+5*pi^2).*cos(pi.*x).*cos(2*pi.*y)); 
-%f = @(x, y)((1).*(cos(pi.*x)).*cos(2*pi.*y)); 
 
 % �valuer la fonction du second membre
 FF = f(Coorneu(:, 1), Coorneu(:, 2)); 

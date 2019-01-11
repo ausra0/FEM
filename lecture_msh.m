@@ -16,18 +16,13 @@ function [Nbpt,Nbtri,Coorneu,Numtri]=lecture_msh(nomfileNode,nomfileElement)
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % charger le fichier nomfileNode
-    % il s'agit d'un fichier contenant des données Nbptx4 
-    % la première colone contient les indexes de chacun des noeuds 
-    % la deuxième - les coordonnés en x du noeud 
-    % la troisième - la coordonnée en y du noeud
-    % la quatrième - ?????????????????
 value=load(nomfileNode);
 
-% retrouver les dimensions de value, coordonnée en x correspond à Nbpt
+% retrouver les dimensions de value, coordonnï¿½e en x correspond ï¿½ Nbpt
 s=size(value); 
 Nbpt = s(1);
 
-% récupérer les coordonnés des points des noeuds 
+% rï¿½cupï¿½rer les coordonnï¿½s des points des noeuds 
 Coorneu = zeros(Nbpt,2);
 for i=1:Nbpt
   Coorneu(i,1) = value(i,2);
@@ -37,14 +32,13 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % charger le fichier nomfileElement
-    % il s'agit d'un fichier contenant ???????????????????
 value=load(nomfileElement);
 
 % retrouver les dimenstions de value
 s=size(value);
 Nbtri = s(1); % nombre de triangles
 enddd = s(2); % nb de colones de value 
-              %(on voudra prendre les 3 derniers éléments)
+              %(on voudra prendre les 3 derniers ï¿½lï¿½ments)
 
 
 Numtri = zeros(Nbtri,3);

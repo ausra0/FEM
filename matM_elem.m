@@ -24,8 +24,7 @@ D = ((x2-x3)*(y3-y1) - (y2-y3)*(x3-x1));
 Tol = 1e-6;
 if (abs(D) <= Tol) 
   error('l aire d un triangle est nulle!!!'); 
-end
-%aire = 0.5*abs(D); 
+end 
 
 % d�finir les fonctions de base 
 phi1 = @(s)((y2 - y3).*(s(:, 1) - x3) - (x2 - x3).*(s(:, 2) - y3)); 
@@ -37,11 +36,5 @@ Phi = [phi1(midpoints), phi2(midpoints), phi3(midpoints)];
 
 % calcul de la matrice de masse
 Mel = (1/(abs(D)*6)).*Phi'*Phi; 
-%Mel = zeros(3,3);
-%for i=1:3
-%  for j=1:3
-%    Mel(i,j) = aire/3; 
-%  end 
-%end 
-%Mel = aire/3*eye(3); 
+
 end

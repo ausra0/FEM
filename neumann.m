@@ -1,12 +1,13 @@
 % Fichier principal pour la m�thode des �lements finis 2D
-clear;
-%% 
+%% initialisation 
+clear; 
+
 % variables pour contenir l'erreur
 err_l2 = zeros(1,3); 
 err_h1 = zeros(1, 3);
 
 % faire tourner le code pour chacun des maillages
-for mesh_indx = 1:3 
+for mesh_indx = 1:3
     %% Lecture du maillage et affichage
 
     % d�finir les noms des fichiers � lire
@@ -23,7 +24,7 @@ for mesh_indx = 1:3
     num_figure = num_figure + 1;
 
 
-    %% Calcul des matrices EF
+    %% Calcul des matrices EF (K et M)
 
     % declarations
     K = zeros(Nbpt,Nbpt); % matrice de raideur
@@ -71,13 +72,13 @@ for mesh_indx = 1:3
 
     %% Visualisation
     % affiche la solution approchee
-    %affiche(num_figure, U, Numtri, Coorneu);
+    affiche(num_figure, U, Numtri, Coorneu);
     num_figure = num_figure + 1;
 
     % affiche la solution exacte
     U_exact = cos(pi*Coorneu(:,1)).*cos(2*pi*Coorneu(:,2));
-
-    %affiche(num_figure, U_exact, Numtri, Coorneu);
+    
+    affiche(num_figure, U_exact, Numtri, Coorneu);
     num_figure = num_figure + 1;
     
     %% Calcul de l erreur L2
@@ -86,20 +87,31 @@ for mesh_indx = 1:3
     %% Calcul de l erreur H1
     err_h1(mesh_indx) = (U_exact - U)'*K*(U_exact - U) + err_l2(mesh_indx); 
 
+    % attendre pour pouvoir visioner la solution pour ce pas la
+    %pause; 
 end
 
 %% affichage de l'erreur
 h = [0.22, 0.11, 0.055];
 
 figure 
-subplot(1, 2, 1);
-loglog(h, err_l2);
+loglog(h, err_l2, '-o');
+hold on; 
+loglog(h, 5*h.^2, '--o');
+hold off; 
+grid on; 
 title("erreur L2");
+legend("empirique", "theorique"); 
 xlabel("h"); 
 ylabel("||u - u_{h}||");
 
-subplot(1, 2, 2);
-loglog(h, err_h1);
+figure
+loglog(h, err_h1, '-o');
+hold on; 
+loglog(h, 6*h, '--o'); 
+hold off; 
+grid on; 
 title("erreur H1"); 
+legend("empirique", "theorique");
 xlabel("h"); 
 ylabel("||u - u_{h}||");
