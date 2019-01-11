@@ -25,7 +25,7 @@ normm(2, :) = [y3-y1, x1-x3];
 normm(3, :) = [y1-y2, x2-x1];
 
 % D est, au signe pres, deux fois l'aire du triangle
-D = ((x2-x1)*(y3-y1) - (y2-y1)*(x3-x1));
+D = ((x2-x3)*(y3-y1) - (y2-y3)*(x3-x1));
 TresPetit = 1e-6;
 if (abs(D) <= TresPetit) 
   error('l aire d un triangle est nulle!!!'); 
@@ -33,13 +33,4 @@ end
 
 % calcul de la matrice de raideur
 Kel = (0.5/abs(D)).*normm*normm'; 
-
-%aire = 0.5*abs(D); 
-
-%Kel = zeros(3,3);
-%for i=1:3
-%  for j=1:3
-%    Kel(i,j) = aire/3; 
-%  end 
-%end 
 end
