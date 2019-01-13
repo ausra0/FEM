@@ -98,20 +98,23 @@ figure
 loglog(h, err_l2, '-o');
 hold on; 
 loglog(h, 5*h.^2, '--o');
-hold off; 
+hold off;
+set(gca, 'XDir','reverse');
 grid on; 
-title("erreur L2");
-legend("empirique", "theorique"); 
-xlabel("h"); 
-ylabel("||u - u_{h}||");
+title("erreur L2"); 
+legend("empirique", "theorique");
+xlabel("log(h)"); 
+ylabel("log||u - u_{h}||");
+ 
 
-figure
-loglog(h, err_h1, '-o');
+figure 
+loglog(h, err_h1, '-o'); 
 hold on; 
 loglog(h, 6*h, '--o'); 
 hold off; 
+set(gca, 'XDir', 'reverse'); 
 grid on; 
 title("erreur H1"); 
 legend("empirique", "theorique");
-xlabel("h"); 
-ylabel("||u - u_{h}||");
+xlabel("log(h)"); 
+ylabel("log||u - u_{h}||");
